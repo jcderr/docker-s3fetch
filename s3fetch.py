@@ -7,8 +7,12 @@ from boto.s3.key import Key
 conn = S3Connection()
 
 def download_file(bucket, keystr, filename):
-    key = Key(bucket=bucket, name=keystr)
-    key.get_contents_to_filename(filename)
+    try:
+        key = Key(bucket=bucket, name=keystr)
+        key.get_contents_to_filename(filename)
+    except Exception, e:
+	print "Attempted to fetch {} from {} as {}".format(keystr, bucket, filename)
+        print "Download failed: {}".format(e)
 
 if __name__ == "__main__":
     """ argv1: bucketname

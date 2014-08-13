@@ -5,5 +5,4 @@ WORKDIR /opt/app
 ADD . /opt/app
 RUN apt-get update -qq; apt-get install -yq python-pip; pip install -r requirements.txt
 
-ENTRYPOINT ["python", "/opt/app/s3fetch.py"]
-CMD [""]
+CMD bash
