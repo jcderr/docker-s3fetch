@@ -4,7 +4,11 @@ import argparse
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
-conn = S3Connection()
+try:
+    conn = S3Connection()
+except:
+    print "Connection to S3 failed."
+    sys.exit(-1)
 
 def download_file(bucket, keystr, filename):
     try:
